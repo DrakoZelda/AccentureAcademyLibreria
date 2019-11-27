@@ -7,8 +7,9 @@
     <option value="value3">Value 3</option>
 </select> -->
 
-<form data-actionLink="">
+<form name="_form" data-actionlink=@ViewBag.actionlink>
 
+    @Html.HiddenFor(m => m.Id)
 
     @Html.LabelFor(m => m.Nombre)
     @Html.EditorFor(m => m.Nombre)
@@ -23,10 +24,7 @@
     @Html.LabelFor(m => m.ISBN)
     @Html.EditorFor(m => m.ISBN)
 
-    @Html.DropDownList("EditorialId", null, htmlAttributes: new { @class = "form-control" , Id="EditorialSelect" })
+    @Html.DropDownList("Id_Editorial", null, new { @class="form-control"})
 
-    <button id="EditarButton"></button>
-
-
-
+    <button>Enviar</button>
 </form>
