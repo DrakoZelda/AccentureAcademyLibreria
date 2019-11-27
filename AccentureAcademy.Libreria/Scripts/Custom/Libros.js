@@ -1,12 +1,30 @@
 ﻿let main = document.querySelector("main")
 
-let xhr = new XMLHttpRequest
+// let xhr = new XMLHttpRequest
+//
+// xhr.open("GET", "/Libros/Editar/1")
+//
+// xhr.addEventListener("readystatechange", () => {
+//   if(xhr.readyState == 4 && xhr.status == 200){
+//     main.innerHTML = xhr.response
+//   }
+// })
+// xhr.send()
+// let buttonCrearView =
 
-xhr.open("GET", "/Libros/_FormLibros")
+let buttonCrearView = main.children.crearView
 
-xhr.addEventListener("readystatechange", () => {
-  if(xhr.readyState == 4 && xhr.status == 200){
-    main.innerHTML = xhr.response
-  }
+buttonCrearView.addEventListener("click", e => {
+  getCrearView(e.target.dataset.actionlink)
 })
-xhr.send()
+
+function getCrearView(url){
+  let xhr = new XMLHttpRequest
+  xhr.open("GET", url)
+  xhr.addEventListener("readystatechange", () => {
+    if(xhr.readyState == 4 && xhr.status == 200){
+      main.innerHTML = xhr.response
+    }
+  })
+  xhr.send()
+}

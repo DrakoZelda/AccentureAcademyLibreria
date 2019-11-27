@@ -17,10 +17,35 @@ namespace AccentureAcademy.Libreria.Controllers
             return View();
         }
 
-        public ActionResult _FormLibros()
+        public ActionResult Crear()
         {
-            ViewBag.EditorialId= new SelectList(db.Editorial, "Id", "Nombre");
-            return PartialView();
+            Libro libro = new Libro();
+            ViewBag.EditorialId = new SelectList(db.Editorial, "Id", "nombre");
+            return PartialView("_FormLibros", libro);
+        }
+
+        [HttpPost]
+        public ActionResult Crear(Libro libro)
+        {
+            db.Libro.Add(libro);
+            db.SaveChanges();
+            return Content("Libro creado satisfactoriamente.");
+        }
+
+        public ActionResult Editar(int id)
+        {
+            Libro libro = db.Libro.Find(id);
+            ViewBag.EditorialId= new SelectList(db.Editorial, "Id", "Nombre", libro.Editorial.Id);
+            return PartialView("_FormLibros", libro);
+        }
+
+        [HttpPost]
+        public ActionResult Editar(Libro libro)
+        {
+            db.Libro.Attach(libro);
+            db.Entry(libro).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return Content("Libro editado satisfactoriamente.");
         }
     }
 }

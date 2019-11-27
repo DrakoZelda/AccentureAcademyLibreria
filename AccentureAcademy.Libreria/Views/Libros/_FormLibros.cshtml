@@ -7,5 +7,26 @@
     <option value="value3">Value 3</option>
 </select> -->
 
-@Html.DropDownList("EditorialId", null, htmlAttributes: new { @class = "form-control" , Id="EditorialSelect" })
+<form data-actionLink="">
 
+
+    @Html.LabelFor(m => m.Nombre)
+    @Html.EditorFor(m => m.Nombre)
+
+
+    @Html.LabelFor(m => m.AnioPublicacion)
+    @Html.EditorFor(m => m.AnioPublicacion)
+
+    @Html.LabelFor(m => m.NroPaginas)
+    @Html.EditorFor(m => m.NroPaginas)
+
+    @Html.LabelFor(m => m.ISBN)
+    @Html.EditorFor(m => m.ISBN)
+
+    @Html.DropDownList("EditorialId", null, htmlAttributes: new { @class = "form-control" , Id="EditorialSelect" })
+
+    <button id="EditarButton"></button>
+
+
+
+</form>
