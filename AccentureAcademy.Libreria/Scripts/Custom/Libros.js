@@ -1,5 +1,5 @@
-﻿let main = document.querySelector("main")
-
+﻿let navBtns = document.querySelectorAll(".navigation-button")
+let main = document.querySelector("main")
 // let xhr = new XMLHttpRequest
 //
 // xhr.open("GET", "/Libros/Editar/1")
@@ -12,11 +12,13 @@
 // xhr.send()
 // let buttonCrearView =
 
-let buttonCrearView = main.children.crearView
-
-buttonCrearView.addEventListener("click", e => {
+console.log(navBtns)
+navBtns.forEach(button => button.addEventListener("click", e =>{
   getView(e.target.dataset.actionlink)
-})
+}))
+
+
+
 
 function getView(url){
   let xhr = new XMLHttpRequest
@@ -24,7 +26,6 @@ function getView(url){
   xhr.addEventListener("readystatechange", () => {
     if(xhr.readyState == 4 && xhr.status == 200){
       main.innerHTML = xhr.response
-      console.dir(main)
       let buttonSubmit = main.children._form.lastElementChild
       attachAction(buttonSubmit, main.children._form.dataset.actionlink)
     }

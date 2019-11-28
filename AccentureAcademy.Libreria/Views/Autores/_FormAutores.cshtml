@@ -1,0 +1,17 @@
+﻿@model AccentureAcademy.Libreria.Models.Autor
+
+<h1>formulario de Autores</h1>
+
+<form name="_form" data-actionlink=@ViewBag.actionlink>
+
+    @Html.LabelFor(m => m.Nombre)
+    @Html.EditorFor(m => m.Nombre)
+
+    @Html.LabelFor(m => m.Apellido)
+    @Html.EditorFor(m => m.Apellido)
+
+    @Html.LabelFor(m => m.FechaNacimiento)
+    @Html.EditorFor(m => m.FechaNacimiento)
+
+    <button>Enviar</button>
+</form>

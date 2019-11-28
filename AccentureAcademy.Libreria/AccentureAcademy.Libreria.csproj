@@ -278,13 +278,17 @@
     <Content Include="Views\Libros\Index.cshtml" />
     <Content Include="Views\Libros\_FormLibros.cshtml" />
     <Content Include="Views\Libros\_ListarLibros.cshtml" />
+    <Content Include="Views\Generos\Index.cshtml" />
+    <Content Include="Views\Editoriales\View.cshtml" />
+    <Content Include="Views\Autores\View.cshtml" />
+    <Content Include="Views\Generos\View.cshtml" />
+    <Content Include="Views\Autores\_FormAutores.cshtml" />
+    <Content Include="Views\Editoriales\_FormEditoriales.cshtml" />
+    <Content Include="Views\Generos\_FormGeneros.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="obj\Debug\TempPE\" />
-    <Folder Include="Views\Autores\" />
-    <Folder Include="Views\Editoriales\" />
-    <Folder Include="Views\Generos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

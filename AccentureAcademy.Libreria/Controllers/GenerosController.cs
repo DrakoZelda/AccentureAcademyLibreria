@@ -11,13 +11,18 @@ namespace AccentureAcademy.Libreria.Controllers
     {
         private LibreriaEntities db = new LibreriaEntities();
 
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         public ActionResult Mostrar(int id)
         {
             Genero genero = db.Genero.Find(id);
             return PartialView("_ShowLibros", genero);
         }
 
-        public ActionResult Crear(int id)
+        public ActionResult Crear()
         {
             Genero genero = new Genero();
             ViewBag.actionlink = Url.Action("Crear", "Generos");

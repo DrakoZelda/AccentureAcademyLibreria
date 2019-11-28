@@ -1,0 +1,17 @@
+﻿@model AccentureAcademy.Libreria.Models.Editorial
+
+<h1>Formulario Editoriales</h1>
+
+
+<form name="_form" data-actionlink=@ViewBag.actionlink>
+    @Html.LabelFor(m => m.Nombre)
+    @Html.EditorFor(m => m.Nombre)
+
+    @Html.LabelFor(m => m.Email)
+    @Html.EditorFor(m => m.Email)
+
+    @Html.LabelFor(m => m.Cuil)
+    @Html.EditorFor(m => m.Cuil)
+
+    <button></button>
+</form>
