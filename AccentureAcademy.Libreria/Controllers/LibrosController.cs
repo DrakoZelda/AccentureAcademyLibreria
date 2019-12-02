@@ -1,4 +1,5 @@
 ﻿using AccentureAcademy.Libreria.Models;
+using AccentureAcademy.Libreria.Models.Filtros;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,12 @@ namespace AccentureAcademy.Libreria.Controllers
         {
             Libro libro = new Libro();
             ViewBag.Id_Editorial = new SelectList(db.Editorial, "Id", "Nombre");
+            ViewBag.Autores = db.Autor.ToList();
+            ViewBag.Generos = db.Genero.ToList();
             ViewBag.actionlink = Url.Action("Crear", "Libros");
             return PartialView("_FormLibros", libro);
         }
+
 
         [HttpPost]
         public ActionResult Crear(Libro libro)
@@ -48,6 +52,7 @@ namespace AccentureAcademy.Libreria.Controllers
         [HttpPost]
         public ActionResult Editar(Libro libro)
         {
+            
             db.Libro.Attach(libro);
             db.Entry(libro).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
@@ -60,6 +65,22 @@ namespace AccentureAcademy.Libreria.Controllers
             return PartialView("_ShowLibro", libro);
         }
 
-        
+        public ActionResult Filtrar()
+        {
+            return PartialView("_FiltrarLibros");
+        }
+
+        [HttpPost]
+        public ActionResult FiltrarLibro(FiltroLibro filtros)
+        {
+            EstrategiaFiltroLibro strategy = new EstrategiaFiltroLibro()
+            {
+                libros = db.Libro,
+                Filtros = filtros
+            };
+
+            List<Libro> librosFiltrados = strategy.Filtrar();
+            return PartialView("_ListarLibros", librosFiltrados);
+        }
     }
 }

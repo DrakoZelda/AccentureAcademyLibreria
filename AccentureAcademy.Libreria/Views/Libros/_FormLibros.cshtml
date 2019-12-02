@@ -1,30 +1,56 @@
 ﻿@model AccentureAcademy.Libreria.Models.Libro
+@using AccentureAcademy.Libreria.Models
+
 <h1>Formulario de Libros</h1>
-<!-- <select name="select">
 
-    <option value="value1">Value 1</option>
-    <option value="value2" selected>Value 2</option>
-    <option value="value3">Value 3</option>
-</select> -->
-
-<form name="_form" data-actionlink=@ViewBag.actionlink>
+<form name="_form" data-actionlink=@ViewBag.actionlink class="">
 
     @Html.HiddenFor(m => m.Id)
 
-    @Html.LabelFor(m => m.Nombre)
-    @Html.EditorFor(m => m.Nombre)
+    <div class="form-group">
+        @Html.LabelFor(m => m.Nombre)
+        @Html.EditorFor(m => m.Nombre, new { @class="form-control"})
+    </div>
 
 
-    @Html.LabelFor(m => m.AnioPublicacion)
-    @Html.EditorFor(m => m.AnioPublicacion)
+    <div class="form-group">
+        @Html.LabelFor(m => m.AnioPublicacion)
+        @Html.EditorFor(m => m.AnioPublicacion)
+    </div>
 
-    @Html.LabelFor(m => m.NroPaginas)
-    @Html.EditorFor(m => m.NroPaginas)
 
-    @Html.LabelFor(m => m.ISBN)
-    @Html.EditorFor(m => m.ISBN)
+    <div class="form-group">
+        @Html.LabelFor(m => m.NroPaginas)
+        @Html.EditorFor(m => m.NroPaginas)
+    </div>
 
-    @Html.DropDownList("Id_Editorial", null, new { @class="form-control"})
+    <div class="form-group">
+        @Html.LabelFor(m => m.ISBN)
+        @Html.EditorFor(m => m.ISBN)
+    </div>
 
-    <button>Enviar</button>
+    <div id="divGeneros" class="form-group">
+        <input type="text" list="Genero" id="inputGeneros"/>
+        <datalist id="Genero">
+            @foreach (Genero genero in ViewBag.Generos)
+            {
+                <option value=@genero.Nombre />
+            }
+        </datalist>
+    </div>
+
+    <div class="form-group">
+        <input type="text" list="Autor" class="relacion" />
+        <datalist id="Autor">
+            @foreach (Autor autor in ViewBag.Autores)
+            {
+                <option value=@(autor.Nombre  + " " + autor.Apellido)/>
+            }
+        </datalist>
+    </div>
+
+
+    @Html.DropDownList("Id_Editorial", null, new { @class = "form-group" })
+
+    <button class="btn btn-primary">Enviar</button>
 </form>

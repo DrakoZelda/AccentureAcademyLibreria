@@ -1,5 +1,34 @@
-﻿@model AccentureAcademy.Libreria.Models.Libro
+﻿@model List<AccentureAcademy.Libreria.Models.Libro>
 
-<h1>Tabla de Libros</h1>
-
-@
+        @foreach (var libro in this.Model)
+        {
+            <tr>
+                <td>
+                    @libro.Nombre
+                </td>
+                <td>
+                    @libro.AnioPublicacion.Year
+                </td>
+                <td>
+                    @libro.NroPaginas
+                </td>
+                <td>
+                    @libro.ISBN
+                </td>
+                <td>
+                    @foreach (var relacionGenero in libro.Pertenece)
+                    {
+                        @relacionGenero.Genero.Nombre <br>
+                    }
+                </td>
+                <td>
+                    @foreach (var relacionAutor in libro.EscritoPor)
+                    {
+                        @(relacionAutor.Autor.Nombre + "" + relacionAutor.Autor.Apellido) <br>
+                    }
+                </td>
+                <td>
+                    @(libro.Editorial.Nombre + " Cuil:" + libro.Editorial.Cuil)
+                </td>
+            </tr>
+        }

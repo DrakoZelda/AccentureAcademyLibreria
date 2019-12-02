@@ -4,6 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="~/Content/Custom/style.css" rel="stylesheet" />
     <title>@ViewBag.Title</title>
 </head>
 <body>
@@ -15,6 +17,7 @@
         <button class="navigation-button" name="crearGeneroView" data-actionlink=@Url.Action("Crear", "Generos")>Crear Genero</button>
         <button class="navigation-button" name="crearEditorialView" data-actionlink=@Url.Action("Crear", "Editoriales")>Crear Editorial</button>
         <button class="navigation-button" name="crearAutorView" data-actionlink=@Url.Action("Crear", "Autores")>Crear Autor</button>
+        <button class="navigation-button" name="BuscarLibrosView" data-actionlink=@Url.Action("Filtrar", "Libros")>Buscar Libros</button>
     </nav>
     <main>
         @RenderBody()
@@ -22,7 +25,6 @@
     <footer>
 
     </footer>
-
     <script src="~/Scripts/Custom/Libros.js"></script>
 </body>
 </html>

@@ -1,0 +1,11 @@
+﻿.chip {
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    background-color: rgba(128, 128, 128, 0.493);
+    display: inline;
+}
+
+.close {
+    border: none;
+    background-color: transparent;
+}

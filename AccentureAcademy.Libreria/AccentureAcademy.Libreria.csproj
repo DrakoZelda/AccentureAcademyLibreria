@@ -145,6 +145,8 @@
     <Compile Include="Models\EscritoPor.cs">
       <DependentUpon>Libreria.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Filtros\EstrategiaFiltroLibro.cs" />
+    <Compile Include="Models\Filtros\FiltroLibro.cs" />
     <Compile Include="Models\Genero.cs">
       <DependentUpon>Libreria.tt</DependentUpon>
     </Compile>
@@ -166,6 +168,10 @@
     <Compile Include="Models\Libro.cs">
       <DependentUpon>Libreria.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Metadata\Autor.cs" />
+    <Compile Include="Models\Metadata\Genero.cs" />
+    <Compile Include="Models\Metadata\MetadataAutor.cs" />
+    <Compile Include="Models\Metadata\MetadataGenero.cs" />
     <Compile Include="Models\Pertenece.cs">
       <DependentUpon>Libreria.tt</DependentUpon>
     </Compile>
@@ -214,6 +220,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Custom\style.css" />
     <Content Include="DATA\Script.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -285,6 +292,7 @@
     <Content Include="Views\Autores\_FormAutores.cshtml" />
     <Content Include="Views\Editoriales\_FormEditoriales.cshtml" />
     <Content Include="Views\Generos\_FormGeneros.cshtml" />
+    <Content Include="Views\Libros\_FiltrarLibros.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
