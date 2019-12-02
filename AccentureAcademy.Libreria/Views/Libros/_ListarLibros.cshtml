@@ -1,4 +1,31 @@
 ﻿@model List<AccentureAcademy.Libreria.Models.Libro>
+<table id="tablaLibros">
+    <thead>
+        <tr>
+            <th>
+                Titulo
+            </th>
+            <th>
+                Año Publicacion
+            </th>
+            <th>
+                Cantidad de paginas
+            </th>
+            <th>
+                ISBN
+            </th>
+            <th>
+                Generos
+            </th>
+            <th>
+                Autores
+            </th>
+            <th>
+                Editorial
+            </th>
+        </tr>
+    </thead>
+    <tbody>
 
         @foreach (var libro in this.Model)
         {
@@ -30,5 +57,13 @@
                 <td>
                     @(libro.Editorial.Nombre + " Cuil:" + libro.Editorial.Cuil)
                 </td>
+                <td>
+                    <button data-actionlink=@Url.Action("Editar", "Libros", new { id= libro.Id}) class="bm-button">Editar Libro</button>
+                </td>
+                <td>
+                    <button data-actionlink=@Url.Action("Eliminar", "Libros", new { id = libro.Id }) class="bm-button"> Eliminar Libro</button>
+                </td>
             </tr>
         }
+    </tbody>
+</table>

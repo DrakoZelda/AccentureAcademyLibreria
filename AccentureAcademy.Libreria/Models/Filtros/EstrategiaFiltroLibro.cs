@@ -34,11 +34,15 @@ namespace AccentureAcademy.Libreria.Models.Filtros
 
         private void FiltrarAutores()
         {
-            if(Filtros.Id_Autores.Length <= 0)
+            if(Filtros.Id_Autores.Length > 0)
             {
                 foreach (int id_autor in Filtros.Id_Autores)
                 {
-                    libros = libros.Where(libro => libro.EscritoPor.Any(relacion => relacion.Id_Autor == id_autor));
+                    if(!(id_autor < 0))
+                    {
+                        libros = libros.Where(libro => libro.EscritoPor.Any(relacion => relacion.Id_Autor == id_autor));
+
+                    }
                 }
             }
         }
@@ -49,7 +53,11 @@ namespace AccentureAcademy.Libreria.Models.Filtros
             {
                 foreach (int id_genero in Filtros.Id_Generos)
                 {
-                    libros = libros.Where(libro => libro.Pertenece.Any(relacion => relacion.Id_Genero == id_genero));
+                    if(!(id_genero < 0))
+                    {
+                        libros = libros.Where(libro => libro.Pertenece.Any(relacion => relacion.Id_Genero == id_genero));
+
+                    }
                 }
             }
         }

@@ -17,13 +17,16 @@ let chips = []
 navBtns.forEach(button => button.addEventListener("click", e => {
     if (e.target.name == "crearLibroView") {
         getViewLibro(e.target.dataset.actionlink)
-    } else {
+    } else if (e.target.name == "BuscarLibrosView") {
+        getViewLibroBuscar(e.target.dataset.actionlink)
+    }
+        else {
         getView(e.target.dataset.actionlink)
 
     }
 }))
 
-function chipsLibro() {
+/*function chipsLibro() {
     let inputRelacion = document.getElementById("inputGeneros")
 
     inputRelacion.addEventListener("change", e => {
@@ -38,6 +41,7 @@ function chipsLibro() {
         div.appendChild(close)
         let divInput = document.getElementById("divGeneros")
         divInput.appendChild(div)
+
         e.target.value = ""
 
         div.addEventListener("click", e => {
@@ -46,7 +50,7 @@ function chipsLibro() {
             e.target.parentNode.removeChild(e.target)
         })
     })
-}
+}*/
 
 
 function getView(url){
@@ -71,7 +75,45 @@ function getViewLibro(url) {
         if (xhr.readyState == 4 && xhr.status == 200) {
             main.innerHTML = xhr.response
             let buttonSubmit = main.children._form.lastElementChild
-            chipsLibro()
+            let buttonAgregarGenero = document.getElementById("agregarGenero")
+            let buttonAgregarAutor = document.getElementById("agregarAutor")
+            buttonAgregarAutor.addEventListener("click", e => {
+                e.preventDefault()
+                let selectAutores = document.getElementById("selectAutores").cloneNode(true)
+                e.target.parentNode.appendChild(selectAutores)
+            })
+            buttonAgregarGenero.addEventListener("click", e => {
+                e.preventDefault()
+                let selectGeneros = document.getElementById("selectGeneros").cloneNode(true)
+                e.target.parentNode.appendChild(selectGeneros)
+            })
+            attachActionCrear(buttonSubmit, main.children._form.dataset.actionlink)
+
+        }
+    })
+    xhr.send()
+}
+
+function getViewLibroBuscar(url) {
+    let xhr = new XMLHttpRequest
+    xhr.open("GET", url)
+    xhr.addEventListener("readystatechange", e => {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            main.innerHTML = xhr.response
+            let buttonSubmit = main.children._form.lastElementChild
+            let buttonAgregarGenero = document.getElementById("agregarGenero")
+            let buttonAgregarAutor = document.getElementById("agregarAutor")
+            buttonAgregarAutor.addEventListener("click", e => {
+                e.preventDefault()
+                let selectAutores = document.getElementById("selectAutores").cloneNode(true)
+                e.target.parentNode.appendChild(selectAutores)
+            })
+            buttonAgregarGenero.addEventListener("click", e => {
+                e.preventDefault()
+                let selectGeneros = document.getElementById("selectGeneros").cloneNode(true)
+                e.target.parentNode.appendChild(selectGeneros)
+            })
+            attachActionSearch(buttonSubmit, main.children._form.dataset.actionlink)
         }
     })
     xhr.send()
@@ -79,9 +121,26 @@ function getViewLibro(url) {
 
 function attachAction(button, actionlink){
   button.addEventListener("click", e => {
-    e.preventDefault()
-    sendFormTo(main.children._form, actionlink)
+      e.preventDefault()
+      sendFormTo(main.children._form, actionlink)
   })
+}
+
+function attachActionCrear(button, actionlink) {
+    button.addEventListener("click", e => {
+        e.preventDefault()
+        if (ValidateLibroForm()) {
+            sendFormTo(main.children._form, actionlink)
+
+        }
+    })
+}
+
+function attachActionSearch(button, actionlink) {
+    button.addEventListener("click", e => {
+        e.preventDefault()
+        sendFormToSearch(main.children._form, actionlink)
+    })
 }
 
 function sendFormTo(form, actionlink){
@@ -89,9 +148,27 @@ function sendFormTo(form, actionlink){
   let formData = new FormData(form)
   xhr.open("POST", actionlink)
   xhr.addEventListener("readystatechange", () =>{
-    if(xhr.readyState == 4 && xhr.status == 200){
-      return xhr.response
-    }
+      if (xhr.readyState == 4 && xhr.status == 200) {
+          alert(xhr.response)
+       }
   })
   xhr.send(formData)
+}
+
+function sendFormToSearch(form, actionlink) {
+    let xhr = new XMLHttpRequest
+    let formdata = new FormData(form)
+    xhr.open("POST", actionlink)
+    xhr.addEventListener("readystatechange", () => {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            main.innerHTML = main.innerHTML + xhr.response
+            let BmBtns = document.querySelectorAll(".bm-button")
+            BmBtns.forEach(button => {
+                button.addEventListener("click", e => {
+                    getView(e.target.dataset.actionlink)
+                })
+            })
+        }
+    })
+    xhr.send(formdata)
 }

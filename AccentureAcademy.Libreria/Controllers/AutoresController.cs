@@ -27,9 +27,15 @@ namespace AccentureAcademy.Libreria.Controllers
         [HttpPost]
         public ActionResult Crear(Autor autor)
         {
+            if (this.ModelState.IsValid)
+            {
             db.Autor.Add(autor);
             db.SaveChanges();
             return Content("El autor se ha creado satisfactoriamente.");
+
+            }
+
+            return new HttpStatusCodeResult(505, "Internal server Error.");
         }
 
         public ActionResult Editar(int id)
@@ -42,11 +48,16 @@ namespace AccentureAcademy.Libreria.Controllers
         [HttpPost]
         public ActionResult Editar(Autor autor)
         {
+            if (this.ModelState.IsValid)
+            {
             db.Autor.Attach(autor);
             db.Entry(autor).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             ViewBag.DbMessage = "El autor se ha editado satisfactoriamente.";
             return PartialView("_ShowAutores", autor);
+
+            }
+            return new HttpStatusCodeResult(505, "Internal server Error.");
         }
 
         [HttpPost]

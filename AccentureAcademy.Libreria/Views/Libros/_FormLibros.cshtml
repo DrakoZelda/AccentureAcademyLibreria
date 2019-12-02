@@ -3,13 +3,14 @@
 
 <h1>Formulario de Libros</h1>
 
-<form name="_form" data-actionlink=@ViewBag.actionlink class="">
+<form name="_form" data-actionlink=@ViewBag.actionlink >
+    @Html.AntiForgeryToken()
 
     @Html.HiddenFor(m => m.Id)
 
     <div class="form-group">
         @Html.LabelFor(m => m.Nombre)
-        @Html.EditorFor(m => m.Nombre, new { @class="form-control"})
+        @Html.EditorFor(m => m.Nombre, new { @class = "form-control" })
     </div>
 
 
@@ -29,28 +30,72 @@
         @Html.EditorFor(m => m.ISBN)
     </div>
 
-    <div id="divGeneros" class="form-group">
-        <input type="text" list="Genero" id="inputGeneros"/>
+    <!--<div id="divGeneros" class="form-group">
+        <label>Generos</label>
+        <input type="text" list="Genero" id="inputGeneros" />
         <datalist id="Genero">
-            @foreach (Genero genero in ViewBag.Generos)
+            foreach (Genero genero in ViewBag.Generos)
             {
-                <option value=@genero.Nombre />
+                <option value=genero.Nombre />
             }
         </datalist>
+    </div> -->
+
+    <!--<div class="form-group">
+        <label>Autores</label>
+        <input type="text" list="Autor" class="relacion" />
+        <datalist id="Autor">
+            foreach (Autor autor in ViewBag.Autores)
+            {
+                <option value=(autor.Nombre  + " " + autor.Apellido)/>
+            }
+        </datalist>
+    </div> -->
+    <div class="form-group">
+        <label>Generos</label>
+        @foreach (var generoInLibro in ViewBag.GenerosInLibro)
+        {
+            <select name="Id_Generos[]">
+                <option value=@generoInLibro.Id >@generoInLibro.Nombre</option>
+            </select>
+        }
+        <select name="Id_Generos[]" id="selectGeneros">
+            @foreach (var genero in ViewBag.Generos)
+            {
+                <option value=@genero.Id>@genero.Nombre</option>
+
+            }
+        </select>
+        <button id="agregarGenero">Agregar otro genero</button>
     </div>
 
     <div class="form-group">
-        <input type="text" list="Autor" class="relacion" />
-        <datalist id="Autor">
-            @foreach (Autor autor in ViewBag.Autores)
+        <label>Autores actuales</label>
+        @foreach (var autorInLibro in ViewBag.AutoresInLibro)
+        {
+            <select name="Id_Generos[]">
+                <option value="-1">Borrar autor</option>
+                <option value=@autorInLibro.Id selected>@autorInLibro.Nombre</option>
+            </select>
+        }
+
+            <label>Autores</label>
+        <select name="Id_Autores[]" id="selectAutores">
+            @foreach (var autor in ViewBag.Autores)
             {
-                <option value=@(autor.Nombre  + " " + autor.Apellido)/>
+                <option value=@autor.Id>@autor.Nombre</option>
+
             }
-        </datalist>
+        </select>
+        <button id="agregarAutor">Agregar otro autor</button>
+
     </div>
 
+    <div class="form-group">
+        <label>Editorial</label>
+        @Html.DropDownList("Id_Editorial", null, new { @class = "form-group" })
 
-    @Html.DropDownList("Id_Editorial", null, new { @class = "form-group" })
+    </div>
 
-    <button class="btn btn-primary">Enviar</button>
+    <button class="btn btn-primary">Buscar</button>
 </form>

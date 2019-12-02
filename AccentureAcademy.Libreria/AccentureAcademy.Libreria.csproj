@@ -169,9 +169,13 @@
       <DependentUpon>Libreria.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Metadata\Autor.cs" />
+    <Compile Include="Models\Metadata\Editorial.cs" />
     <Compile Include="Models\Metadata\Genero.cs" />
+    <Compile Include="Models\Metadata\Libro.cs" />
     <Compile Include="Models\Metadata\MetadataAutor.cs" />
+    <Compile Include="Models\Metadata\MetadataEditorial.cs" />
     <Compile Include="Models\Metadata\MetadataGenero.cs" />
+    <Compile Include="Models\Metadata\MetadataLibro.cs" />
     <Compile Include="Models\Pertenece.cs">
       <DependentUpon>Libreria.tt</DependentUpon>
     </Compile>
@@ -258,6 +262,7 @@
     <Content Include="obj\Debug\edmxResourcesToEmbed\Models\Libreria.ssdl" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Custom\Libros.js" />
+    <Content Include="Scripts\Custom\Validations.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />

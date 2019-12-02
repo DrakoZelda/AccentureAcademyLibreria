@@ -32,10 +32,16 @@ namespace AccentureAcademy.Libreria.Controllers
         [HttpPost]
         public ActionResult Crear(Genero genero)
         {
+            if (this.ModelState.IsValid)
+            {
             db.Genero.Add(genero);
             db.SaveChanges();
-
             return Content("El genero se ha creado satisfactoriamiente.");
+
+            }
+
+            return new HttpStatusCodeResult(505, "Internal server Error.");
+
         }
 
         public ActionResult Editar(int id)
@@ -48,12 +54,16 @@ namespace AccentureAcademy.Libreria.Controllers
         [HttpPost]
         public ActionResult Editar(Genero genero)
         {
+            if (this.ModelState.IsValid){
             db.Genero.Attach(genero);
             db.Entry(genero).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
 
             ViewBag.DbMessage = "El genero se ha modificado satisfactoriamente";
             return PartialView("_ShowGeneros", genero);
+
+            }
+            return new HttpStatusCodeResult(505, "Internal server Error");
         }
 
         [HttpPost]

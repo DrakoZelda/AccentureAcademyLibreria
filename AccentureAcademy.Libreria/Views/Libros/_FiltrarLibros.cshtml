@@ -1,34 +1,51 @@
 ﻿<h1>Busqueda </h1>
-<form>
+<form name="_form" data-actionlink=@Url.Action("FiltrarLibro", "Libros")>
+    @Html.AntiForgeryToken()
+    <label>Titulo</label>
+    <input type="text" name="Titulo" value="" />
+
+    <div class="form-group">
+        <label>Generos</label>
+        <select name="Id_Generos[]" id="selectGeneros">
+            <option value="-1">Elija un genero</option>  
+            @foreach (var genero in ViewBag.Generos)
+            {
+                <option value=@genero.Id>@genero.Nombre</option>
+
+            }
+        </select>
+        <button id="agregarGenero">Agregar otro genero</button>
+
+    </div>
+    <div class="form-group">
+        <label>Autores</label>
+        <select name="Id_Autores[]" id="selectAutores">
+            <option value="-1">elija un autor</option>
+            @foreach (var autor in ViewBag.Autores)
+            {
+                <option value=@autor.Id>@autor.Nombre</option>
+
+            }
+        </select>
+        <button id="agregarAutor">Agregar otro autor</button>
+
+    </div>
+
+    <div class="form-group">
+        <label>Editoriales</label>
+        <select name="Id_Editorial" id="selectEditorial">
+            <option value="-1">elija una Editorial</option>
+            @foreach (var editorial in ViewBag.Editoriales)
+            {
+                <option value=@editorial.Id>@editorial.Nombre</option>
+
+            }
+        </select>
+
+    </div>
+
+    <button>Buscar</button>
+
 </form>
 
-<table id="tabla libros">
-    <thead>
-        <tr>
-            <th>
-                Titulo
-            </th>
-            <th>
-                Año Publicacion
-            </th>
-            <th>
-                Cantidad de paginas
-            </th>
-            <th>
-                ISBN
-            </th>
-            <th>
-                Generos
-            </th>
-            <th>
-                Autores
-            </th>
-            <th>
-                Editorial
-            </th>
-        </tr>
-    </thead>
-    <tbody>
 
-    </tbody>
-</table>
